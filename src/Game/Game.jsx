@@ -1,15 +1,14 @@
 import { useState } from "react"
 import Board from "../Board/Board"
 import calculateWinner from "../helpers"
-
+import './Game.css'
+import { Button } from 'antd';
 
 const Game = () => {
 
     const [board, setBoard] = useState(Array(9).fill(null))
     const [xIsNext, setXisNext] = useState(true)
     const winner = calculateWinner(board)
-
-
 
     const handleClick = (idx) => {
         const boardCopy = [...board]
@@ -19,7 +18,6 @@ const Game = () => {
         boardCopy[idx] = xIsNext ? "X" : "O"
         setBoard(boardCopy)
         setXisNext(!xIsNext)
-
     }
 
     const jumpTo = () => {
@@ -27,21 +25,24 @@ const Game = () => {
     }
 
     const renderMoves = () => {
-        return 
-
+        return <Button ghost className="startBtn" onClick={() => setBoard(Array(9).fill(null))}>
+            Start Game
+        </Button>
     }
 
 
     return (
         <>
-            <h1>Tic Tac Toe Game </h1>
+            <h1>ticTacToe</h1>
 
             <div>
-                <p>{winner ? 'Winner: ' + winner : 'Next player: ' + (xIsNext ? "X" : "O")}</p>
                 {renderMoves()}
+                <h3>{winner ? 'Winner: ' + winner : 'Next player: ' + (xIsNext ? "X" : "O")}</h3>
             </div>
 
-            <Board squares={board} onClick={handleClick} />
+            <div className="marks">
+                <Board squares={board} onClick={handleClick} />
+            </div>
         </>
     )
 }

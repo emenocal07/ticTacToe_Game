@@ -1,6 +1,10 @@
 .square {
-    padding: 10px;
+    
+   
+    border: 2px solid gold;
     border-radius: 6px;
     border-style: double;
-    background-color: lightblue;
+    background-color: black;
+    width: 90px;
+    height: 90px;
 }
